@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <title>Game</title>
 
-    <script type="module" src="./js/launch.js"></script>
+    <script type="module">
+        import Plato from "./js/plato.js"
+
+        const tableInput = document.querySelector("#tableItem");
+        const tabScrore = document.querySelector("#infoGame");
+        const returnbtn = document.querySelector("#resetItem");
+
+        const plato = new Plato(tableInput,tabScrore);
+        plato.putMenuDifficulty();
+
+        returnbtn.addEventListener('click', () => {
+            plato.putMenuDifficulty();
+        })
+    </script>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -16,8 +29,6 @@
     <button id="resetItem"><img src="./asset/return.svg" alt="return"></button>
     <div id="infoGame">Personnal Best score</div>
 </main>
-<audio id="audioSol" src="./asset/sol.wav"></audio>
-<audio id="audioLa" src="./asset/la.wav"></audio>
 <template id="selectDifficulty">
     <div class="infoDificulty">
         Chose your difficulty!

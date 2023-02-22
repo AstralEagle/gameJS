@@ -44,7 +44,6 @@ export default class Plato {
 
     putBtn() {
         this._plato.innerHTML = "";
-        let colorBtn = 1
         for (let i = 1; i <= this._game.nbrRec; i++) {
             const button = document.createElement('button');
             button.id = `bouton-${i}`;
@@ -54,7 +53,6 @@ export default class Plato {
                 this.onBtnClickForGame(e)
             });
             this._plato.append(button);
-            colorBtn === 4 ? colorBtn = 1 : colorBtn++
         }
     }
 
@@ -89,16 +87,18 @@ export default class Plato {
         if (localStorage.getItem("score") < this._game.nbrPush - 1)
             localStorage.setItem("score", this._game.nbrPush - 1)
         this._coordo = [...this._game.creacteSec()]
-        this.setEnabledBtn(true)
         this.updatescore()
+        this.setEnabledBtn(true)
         setTimeout(() => {
             this.viewOneSequence()
         }, 1500)
+        console.log("Test")
     }
 
     viewOneSequence() {
         new Audio("../asset/sol.wav").play();
         const inputSelector = this._plato.querySelector(`#bouton-${this._coordo.shift()}`)
+        console.log(inputSelector)
         inputSelector.classList.add("infoSelectedInput");
         setTimeout(() => {
             inputSelector.classList.remove("infoSelectedInput");
