@@ -64,7 +64,7 @@ export default class Plato {
             e.target.classList.remove("wrongChoise")
         }, 250)
         if (this._game.testInput(parseInt(e.target.value))) {
-            new Audio("/asset/sol.wav").play();
+            new Audio("../asset/sol.wav").play();
             e.target.classList.add("goodChoise")
             this.updatescore()
             if (this._game.nextStep()) {
@@ -73,7 +73,7 @@ export default class Plato {
                 this.launchSequence();
             }
         } else {
-            new Audio("/asset/la.wav").play();
+            new Audio("../asset/la.wav").play();
             e.target.classList.add("wrongChoise")
             setTimeout(() => {
                 this.gameOver()
@@ -97,7 +97,7 @@ export default class Plato {
     }
 
     viewOneSequence() {
-        new Audio("/asset/sol.wav").play();
+        new Audio("../asset/sol.wav").play();
         const inputSelector = this._plato.querySelector(`#bouton-${this._coordo.shift()}`)
         inputSelector.classList.add("infoSelectedInput");
         setTimeout(() => {
