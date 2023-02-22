@@ -1,0 +1,141 @@
+body{
+    margin: 0;
+    background: #F5F5F5;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+main{
+    position: absolute;
+}
+
+#tableItem {
+    max-width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 20px;
+    background: #F5F5F5;
+    box-shadow:  5px 5px 30px #9a9a9a,
+    -5px -5px 30px #ffffff;
+}
+.inputGame{
+    min-width: 75px;
+    min-height: 75px;
+    max-width: 150px;
+    max-height: 150px;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 15px;
+    border: none;
+    margin: 20px;
+    padding: 0;
+    background: linear-gradient(145deg, #ffffff, #dddddd);
+    box-shadow:  5px 5px 10px #878787,
+    -5px -5px 10px #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+.inputGame:hover{
+    filter: grayscale(40%);
+    /*background: linear-gradient(145deg, rgb(240, 240, 240), rgb(202, 202, 202));*/
+}
+.inputGame:active{
+    background: linear-gradient(145deg, #dddddd, #ffffff);
+    box-shadow:  5px 5px 30px #9a9a9a,
+    -5px -5px 30px #ffffff;
+}
+
+.infoSelectedInput::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px 0px 50px -14px rgba(17, 78, 234, 0.58);
+}
+
+
+.infoDificulty{
+    text-align: center;
+}
+.selectDificuty{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+.selectDificuty button{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 25px;
+    border: none;
+    margin: 10px;
+    background: linear-gradient(145deg, #ffffff, #dddddd);
+    box-shadow:  5px 5px 10px #878787,
+    -5px -5px 10px #ffffff;
+}
+.selectDificuty button:hover{
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+}
+.selectDificuty button:active{
+    background: linear-gradient(145deg, #dddddd, #ffffff);
+    box-shadow:  20px 20px 60px #d0d0d0,
+    -20px -20px 60px #ffffff;
+}
+
+.goodChoise{
+    box-shadow: inset 0px 0px 50px -14px #114eea, 5px 5px 30px #9a9a9a,
+    -5px -5px 30px #ffffff !important;
+
+}
+.wrongChoise{
+    box-shadow: inset 0px 0px 50px -14px #ea1111, 5px 5px 30px #9a9a9a,
+    -5px -5px 30px #ffffff !important;
+
+}
+
+.backgroundBtn{
+    width: 100%;
+    height: 100%;
+}
+
+
+#infoGame{
+    padding: 10px;
+    position: absolute;
+    top: -40px;
+    left: 15px;
+    height: 40px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #F5F5F5;
+    box-shadow:  5px 5px 30px #9a9a9a,
+    -5px -5px 30px #ffffff;
+    z-index: -1;
+}
+
+#resetItem{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    background: linear-gradient(145deg, #dddddd, #ffffff);
+    box-shadow:  5px 5px 30px #9a9a9a,
+    -5px -5px 30px #ffffff;
+    bottom: -45px;
+    right: 5px;
+    border: none;
+}
+#resetItem img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
