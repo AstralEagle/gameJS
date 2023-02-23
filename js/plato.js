@@ -8,8 +8,10 @@ export default class Plato {
 
     }
 
+    // Affiche la selection de difficulter
     putMenuDifficulty() {
         this._plato.innerHTML = "";
+        // On recupère un template HTML et on défini un action a chaque bounton du template celon son textContent
         const template = document.querySelector("#selectDifficulty");
         const menuDiff = template.content.cloneNode(true);
         const buttons = menuDiff.querySelectorAll('button')
@@ -22,9 +24,12 @@ export default class Plato {
         this._scrore.innerHTML = `Best score : ${localStorage.getItem("score") || 0}`
     }
 
+    // Fonction qui définie les paramètre de la partie celon le niveau de difficulter choisi
     selectDifficulty(difficulty) {
+        // Paramètre de base qui sera modifier si la difficulter évolu
         let nbrCase = 4;
         let timeView = 12;
+
         if (difficulty > 1)
             nbrCase = 8
         if (difficulty > 2)
@@ -38,11 +43,13 @@ export default class Plato {
         this._game = new Game(nbrCase, timeView)
         this._scrore.innerHTML = `Sequence : 0 / ${this._game.nbrPush}`
         this.putBtn()
+        // On lance
         setTimeout(() => {
             this.launchSequence()
         }, 1500)
     }
 
+    // Affiche les boutons sur le plato
     putBtn() {
         this._plato.innerHTML = "";
         for (let i = 1; i <= this._game.nbrRec; i++) {
@@ -57,6 +64,7 @@ export default class Plato {
         }
     }
 
+    // action des bouton lors du clique
     onBtnClickForGame(e) {
         setTimeout(() => {
             e.target.classList.remove("goodChoise")
@@ -82,28 +90,32 @@ export default class Plato {
         }
     }
 
+    // Active / desactive les boutons selon la valueur en paramètre
     setEnabledBtn(bool) {
         [].slice.call(this._plato.children).forEach(x => x.disabled = bool)
     }
 
+    // Lancement de la sequence a retenir
     launchSequence() {
         // on va gérer le stockage du score maximum
         if (localStorage.getItem("score") < this._game.nbrPush - 1)
             localStorage.setItem("score", this._game.nbrPush - 1)
+        // On créer la sequence et on sauvegarde une copie dans une variable pour afficher sur le plato
         this._coordo = [...this._game.creacteSec()]
         this.setEnabledBtn(true)
         setTimeout(() => {
             this.updatescore()
             this.viewOneSequence()
         }, 1500)
-        console.log("Test")
     }
 
+    // Affichage du bouton a retenir
     viewOneSequence() {
         new Audio("../asset/sol.wav").play();
         const inputSelector = this._plato.querySelector(`#bouton-${this._coordo.shift()}`)
-        console.log(inputSelector)
+        // On donne une class au bouton a retenir
         inputSelector.classList.add("infoSelectedInput");
+        // Après un certain temps on retire la class et on verifie si il y a d'autre element a afficher avant le tour du joueur
         setTimeout(() => {
             inputSelector.classList.remove("infoSelectedInput");
             if (this._coordo.length) {
@@ -116,11 +128,12 @@ export default class Plato {
         }, this._game.timePush * 125)
     }
 
-    //
+    // Fonction qui permet d'afficher le nombre de bouton trouvé sur la sequence
     updatescore() {
         this._scrore.innerHTML = `Sequence : ${this._game.nbrPush - this._game.nbrSec} / ${this._game.nbrPush}`
     }
 
+    // Fonction de game over ( possibiliter de rajouter des action ici (ne sert a rien))
     gameOver() {
         this.putMenuDifficulty()
     }
