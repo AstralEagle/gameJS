@@ -40,15 +40,10 @@ main{
     -5px -5px 10px #ffffff;
     position: relative;
     overflow: hidden;
+    animation: ease-in-out 1s entranceRec both ;
 }
 .inputGame:hover{
     filter: grayscale(40%);
-    /*background: linear-gradient(145deg, rgb(240, 240, 240), rgb(202, 202, 202));*/
-}
-.inputGame:active{
-    background: linear-gradient(145deg, #dddddd, #ffffff);
-    box-shadow:  5px 5px 30px #9a9a9a,
-    -5px -5px 30px #ffffff;
 }
 
 .infoSelectedInput::before{
@@ -68,6 +63,7 @@ main{
 .selectDificuty{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: center;
 }
@@ -138,4 +134,44 @@ main{
     height: 100%;
     width: 100%;
     object-fit: contain;
+}
+.menuWrongResponce{
+    animation: wrongAnimation 1s ease-in-out;
+}
+
+
+@keyframes entranceRec {
+    0% {
+        background: #F5F5F5;
+        box-shadow:  none;
+    }
+    100% {
+        background: linear-gradient(145deg, #ffffff, #dddddd);
+        box-shadow:  5px 5px 10px #878787,
+        -5px -5px 10px #ffffff;
+    }
+}
+
+@keyframes wrongAnimation {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+        transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+        transform: translateX(10px);
+    }
+    80% {
+        transform: translateX(8px);
+    }
+    90% {
+        transform: translateX(-8px);
+    }
 }

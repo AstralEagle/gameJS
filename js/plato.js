@@ -36,10 +36,11 @@ export default class Plato {
         if (difficulty > 5)
             timeView = 2
         this._game = new Game(nbrCase, timeView)
+        this._scrore.innerHTML = `Sequence : 0 / ${this._game.nbrPush}`
         this.putBtn()
         setTimeout(() => {
             this.launchSequence()
-        }, 500)
+        }, 1500)
     }
 
     putBtn() {
@@ -73,9 +74,11 @@ export default class Plato {
         } else {
             new Audio("../asset/la.wav").play();
             e.target.classList.add("wrongChoise")
+            this._plato.classList.add("menuWrongResponce")
             setTimeout(() => {
+                this._plato.classList.remove("menuWrongResponce")
                 this.gameOver()
-            }, 500)
+            }, 1500)
         }
     }
 
@@ -84,12 +87,13 @@ export default class Plato {
     }
 
     launchSequence() {
+        // on va gérer le stockage du score maximum
         if (localStorage.getItem("score") < this._game.nbrPush - 1)
             localStorage.setItem("score", this._game.nbrPush - 1)
         this._coordo = [...this._game.creacteSec()]
-        this.updatescore()
         this.setEnabledBtn(true)
         setTimeout(() => {
+            this.updatescore()
             this.viewOneSequence()
         }, 1500)
         console.log("Test")
@@ -112,6 +116,7 @@ export default class Plato {
         }, this._game.timePush * 125)
     }
 
+    //
     updatescore() {
         this._scrore.innerHTML = `Sequence : ${this._game.nbrPush - this._game.nbrSec} / ${this._game.nbrPush}`
     }
