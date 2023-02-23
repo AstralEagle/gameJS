@@ -1,3 +1,3 @@
 # gameJS
 
-MErci de lancer index.html avec un server
+Merci de lancer index.html avec un server
