@@ -149,7 +149,7 @@ export default class Plato {
                 this._bodyContainer.style.color = "#000000"
                 break;
             default:
-                return ;
+                break ;
         }
         this.launchSequence();
     }
