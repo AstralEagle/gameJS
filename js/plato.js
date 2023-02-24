@@ -157,8 +157,6 @@ export default class Plato {
     // Fonction qui permet d'afficher le nombre de bouton trouvé sur la sequence
     updatescore() {
         this._scrore.innerHTML = `Sequence : ${this._game.nbrPush - this._game.nbrSec} / ${this._game.nbrPush}`
-        console.log(this._game.nbrPush)
-
     }
 
     // Fonction de game over ( possibiliter de rajouter des action ici (ne sert a rien))
