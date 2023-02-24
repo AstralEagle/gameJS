@@ -10,10 +10,11 @@
         //Rècupération des different élément duDOM
         const tableInput = document.querySelector("#tableItem");
         const tabScrore = document.querySelector("#infoGame");
+        const body = document.querySelector("body");
         const returnbtn = document.querySelector("#resetItem");
 
         // Initialisation de la partie
-        const plato = new Plato(tableInput,tabScrore);
+        const plato = new Plato(tableInput,tabScrore, body);
         plato.putMenuDifficulty();
 
         // Ajout d'un event pour retourner a la page de difficulté

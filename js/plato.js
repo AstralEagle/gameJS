@@ -1,15 +1,17 @@
 import Game from "./game.js"
 
+
 export default class Plato {
-    constructor(plato, scrore) {
+    constructor(plato, scrore, body) {
         this._scrore = scrore;
         this._plato = plato;
         this._coordo = [1];
-
+        this._bodyContainer = body;
     }
 
     // Affiche la selection de difficulter
     putMenuDifficulty() {
+        this._bodyContainer.style.color = "white"
         this._plato.innerHTML = "";
         // On recupère un template HTML et on défini un action a chaque bounton du template celon son textContent
         const template = document.querySelector("#selectDifficulty");
@@ -43,7 +45,7 @@ export default class Plato {
         this._game = new Game(nbrCase, timeView)
         this._scrore.innerHTML = `Sequence : 0 / ${this._game.nbrPush}`
         this.putBtn()
-        // On lance
+        // On lance la sequence
         setTimeout(() => {
             this.launchSequence()
         }, 1500)
@@ -75,9 +77,7 @@ export default class Plato {
             e.target.classList.add("goodChoise")
             this.updatescore()
             if (this._game.nextStep()) {
-                this._game.addSec();
-                this._coordo = [...this._game.creacteSec()];
-                this.launchSequence();
+                this.updateNbrSequence();
             }
         } else {
             new Audio("../asset/la.wav").play();
@@ -128,9 +128,37 @@ export default class Plato {
         }, this._game.timePush * 125)
     }
 
+    // Fonction qui augmente le niveau de la partie
+    updateNbrSequence() {
+        this._game.addSec();
+        this._coordo = [...this._game.creacteSec()];
+        switch (this._game.nbrPush) {
+            case 2:
+                this._bodyContainer.style.color = "#B2FF00"
+                break;
+            case 5:
+                this._bodyContainer.style.color = "#FFC100"
+                break;
+            case 7:
+                this._bodyContainer.style.color = "#FF7C00"
+                break;
+            case 10:
+                this._bodyContainer.style.color = "#E20805"
+                break;
+            case 13:
+                this._bodyContainer.style.color = "#000000"
+                break;
+            default:
+                return ;
+        }
+        this.launchSequence();
+    }
+
     // Fonction qui permet d'afficher le nombre de bouton trouvé sur la sequence
     updatescore() {
         this._scrore.innerHTML = `Sequence : ${this._game.nbrPush - this._game.nbrSec} / ${this._game.nbrPush}`
+        console.log(this._game.nbrPush)
+
     }
 
     // Fonction de game over ( possibiliter de rajouter des action ici (ne sert a rien))
